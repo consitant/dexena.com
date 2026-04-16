@@ -8,6 +8,9 @@
 :root {
   /* Colors */
   --black-purple: #342854;
+  --purple: #855CED;
+  --light-purple: #CDB9FF;
+  --white-purple: #f0ecf8;
   --orange: #ff7049;
   --mid-grey: #757474;
   --white: #ffffff;
@@ -194,5 +197,31 @@ body {
   }
   75% {
     translate: 12px -8px;
+  }
+}
+
+@keyframes partner-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Scrollbar-hiding utility */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .partner-marquee,
+  [style*="animation"] {
+    animation: none !important;
   }
 }

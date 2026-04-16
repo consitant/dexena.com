@@ -3,21 +3,15 @@
 import { useEffect, useRef } from "react";
 
 interface BubbleProps {
-  /** Bubble diameter in px (Figma reference at 1920px) */
-  size: number;
-  /** Left position in px from Figma (1920px canvas) */
-  left: number;
-  /** Top position in px from Figma (837px hero) */
-  top: number;
-  /** Rotation in degrees */
+  size: string;
+  left: string;
+  top: string;
   rotation?: number;
-  /** Stroke color for the wireframe ellipses */
   strokeColor?: string;
-  /** Enable mouse-follow behavior */
   followMouse?: boolean;
-  /** Float animation duration in seconds */
   floatSpeed?: number;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export default function Bubble({
@@ -29,74 +23,67 @@ export default function Bubble({
   followMouse = false,
   floatSpeed = 6,
   className = "",
+  style = {},
 }: BubbleProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!followMouse) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const onMove = (e: MouseEvent) => {
       if (!ref.current) return;
       const section = ref.current.closest("section");
       if (!section) return;
       const rect = section.getBoundingClientRect();
-
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const dx = (e.clientX - centerX) / rect.width;
-      const dy = (e.clientY - centerY) / rect.height;
-
-      ref.current.style.setProperty("--mouse-x", `${dx * 50}px`);
-      ref.current.style.setProperty("--mouse-y", `${dy * 35}px`);
+      const dx = ((e.clientX - rect.left) / rect.width - 0.5) * 50;
+      const dy = ((e.clientY - rect.top) / rect.height - 0.5) * 30;
+      ref.current.style.setProperty("--mx", `${dx}px`);
+      ref.current.style.setProperty("--my", `${dy}px`);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
   }, [followMouse]);
 
-  const ellipseCount = 16;
-  const r = size / 2 - 1;
+  const viewBox = 256;
+  const r = viewBox / 2 - 1;
+  const n = 16;
 
   return (
     <div
       ref={ref}
       className={`absolute pointer-events-none ${className}`}
       style={{
-        /* Scale positions proportionally to viewport */
-        left: `calc(${(left / 1920) * 100}%)`,
-        top: `calc(${(top / 837) * 100}%)`,
-        width: `calc(${(size / 1920) * 100}vw)`,
-        height: `calc(${(size / 1920) * 100}vw)`,
-        maxWidth: size,
-        maxHeight: size,
-        transform: `rotate(${rotation}deg) translate(var(--mouse-x, 0px), var(--mouse-y, 0px))`,
-        transition: followMouse ? "transform 0.3s ease-out" : undefined,
+        left,
+        top,
+        width: size,
+        height: size,
+        transform: `rotate(${rotation}deg) translate(var(--mx, 0px), var(--my, 0px))`,
+        transition: followMouse ? "transform 0.4s ease-out" : undefined,
         animation: `bubble-float ${floatSpeed}s ease-in-out infinite`,
-        animationDelay: `${(left * 7 + top * 3) % 5}s`,
+        animationDelay: `${Math.abs(rotation) % 5}s`,
+        ...style,
       }}
     >
       <svg
-        viewBox={`0 0 ${size} ${size}`}
+        viewBox={`0 0 ${viewBox} ${viewBox}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
         style={{ overflow: "visible" }}
       >
-        {Array.from({ length: ellipseCount }, (_, i) => {
-          const rxRatio = 1 - (i / ellipseCount) * 0.9;
-          return (
-            <ellipse
-              key={i}
-              cx={size / 2}
-              cy={size / 2}
-              rx={r * rxRatio}
-              ry={r}
-              stroke={strokeColor}
-              strokeWidth={1.5}
-              opacity={0.5 + i * 0.03}
-            />
-          );
-        })}
+        {Array.from({ length: n }, (_, i) => (
+          <ellipse
+            key={i}
+            cx={viewBox / 2}
+            cy={viewBox / 2}
+            rx={r * (1 - (i / n) * 0.9)}
+            ry={r}
+            stroke={strokeColor}
+            strokeWidth={1.2}
+            opacity={0.4 + i * 0.035}
+          />
+        ))}
       </svg>
     </div>
   );
