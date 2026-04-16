@@ -1,26 +1,198 @@
 @import "tailwindcss";
 
+/* ============================================
+   DEXENA DESIGN SYSTEM
+   Extracted from Figma: pB8OHneow4ONOBtsyIQ54b
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors */
+  --black-purple: #342854;
+  --orange: #ff7049;
+  --mid-grey: #757474;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Spacing — Desktop */
+  --xxl: 120px;
+  --xl: 80px;
+  --l: 40px;
+  --m: 24px;
+  --s: 16px;
+  --xs: 8px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (max-width: 1024px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Spacing — Tablet */
+    --xxl: 80px;
+    --xl: 40px;
+    --l: 24px;
   }
 }
 
+@media (max-width: 720px) {
+  :root {
+    /* Spacing — Mobile */
+    --xxl: 64px;
+    --xl: 32px;
+    --l: 24px;
+  }
+}
+
+@theme inline {
+  --color-black-purple: var(--black-purple);
+  --color-orange: var(--orange);
+  --color-mid-grey: var(--mid-grey);
+
+  --font-heading: "Encode Sans", sans-serif;
+  --font-body: "Encode Sans", sans-serif;
+
+  /* Breakpoints matching Figma */
+  --breakpoint-mobile: 374px;
+  --breakpoint-tablet-portrait: 720px;
+  --breakpoint-tablet: 1024px;
+  --breakpoint-desktop: 1280px;
+  --breakpoint-desktop-lg: 1920px;
+}
+
+/* ============================================
+   BASE
+   ============================================ */
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--white);
+  color: var(--black-purple);
+  font-family: "Encode Sans", sans-serif;
+  font-variation-settings: "wdth" 87.5;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.36;
+  letter-spacing: 0.72px;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   Font: Encode Sans (Variable)
+   Widths: SemiCondensed (87.5), SemiExpanded (112.5)
+   ============================================ */
+
+/* H1 — Desktop: 128px, Tablet: 80px, Mobile: 64px */
+.text-h1 {
+  font-size: 128px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112.5;
+  line-height: 1.06;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 1024px) {
+  .text-h1 { font-size: 80px; }
+}
+@media (max-width: 720px) {
+  .text-h1 { font-size: 64px; }
+}
+
+/* H2 — Desktop: 80px, Tablet: 48px, Mobile: 40px */
+.text-h2 {
+  font-size: 80px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 112.5;
+  line-height: 1.06;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 1024px) {
+  .text-h2 { font-size: 48px; }
+}
+@media (max-width: 720px) {
+  .text-h2 { font-size: 40px; }
+}
+
+/* H3 — Desktop: 48px, Tablet: 32px, Mobile: 32px */
+.text-h3 {
+  font-size: 48px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.18;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 1024px) {
+  .text-h3 { font-size: 32px; }
+}
+
+/* H4 — Desktop: 32px, Tablet: 24px, Mobile: 24px */
+.text-h4 {
+  font-size: 32px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+}
+@media (max-width: 1024px) {
+  .text-h4 { font-size: 24px; }
+}
+
+/* H5 — 18px all breakpoints */
+.text-h5 {
+  font-size: 18px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.18;
+  letter-spacing: 0.04em;
+}
+
+/* H6 — 16px all breakpoints */
+.text-h6 {
+  font-size: 16px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.18;
+  letter-spacing: 0.04em;
+}
+
+/* P1 — 18px all breakpoints */
+.text-p1 {
+  font-size: 18px;
+  font-weight: 300;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+}
+
+/* P2 — 16px all breakpoints */
+.text-p2 {
+  font-size: 16px;
+  font-weight: 300;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.36;
+  letter-spacing: 0.04em;
+}
+
+/* SemiExpanded variant */
+.font-semi-expanded {
+  font-variation-settings: "wdth" 112.5;
+}
+
+/* SemiCondensed variant */
+.font-semi-condensed {
+  font-variation-settings: "wdth" 87.5;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes bubble-float {
+  0%, 100% {
+    translate: 0 0;
+  }
+  25% {
+    translate: 8px -12px;
+  }
+  50% {
+    translate: -5px -20px;
+  }
+  75% {
+    translate: 12px -8px;
+  }
 }
