@@ -1,0 +1,39 @@
+# Memory
+
+## Now
+- Onboarding abgeschlossen — Projekt dexena.com wird aufgebaut
+- Nächster Schritt: Figma MCP verbinden, Design-Überblick, dann Implementierung
+
+## Project
+- **Name:** dexena.com
+- **Typ:** Marketing/Produkt-Website
+- **Stack:** Next.js · React · Node.js
+- **Hosting:** Vercel
+- **Repo:** GitHub (neu anlegen)
+- **Domain:** dexena.com
+
+## Roadmap (Reihenfolge)
+1. Figma MCP-Anbindung herstellen + Design-Überblick verschaffen
+2. GitHub-Repo erstellen, Next.js-Projekt initialisieren, Vercel verknüpfen
+3. Design-System aus Figma extrahieren (Farben, Typo, Breakpoints)
+4. Erste Seiten aus Figma implementieren (pixel-accurate)
+5. Animationen: Header-Bubbles (autonom + Maus-Follow bei Hover)
+6. AI-generierter Content einpflegen
+7. Weitere Seiten im Corporate Design
+8. Impressum & Datenschutz (DE)
+
+## Design
+- Figma: Wireframes + fertiges Design vorhanden (Breakpoints definiert)
+- Font Sizes als Styles/Variables in Figma angelegt
+- Corporate Identity der Marke „Dexena" ist Referenz für alle Seiten
+
+## Key Animations
+- Header: schwebende Bubbles (autonomous motion)
+- Header: Bubbles folgen Maus-Cursor bei Hover
+
+## Open Threads
+- Figma MCP: Verbindung noch nicht aktiv — muss zuerst konfiguriert werden
+- GitHub-Repo: noch nicht erstellt
+
+## Blockers
+- (keine)
