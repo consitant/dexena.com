@@ -47,7 +47,13 @@ export default function Bubble({
 
   const viewBox = 256;
   const r = viewBox / 2 - 1;
-  const n = 16;
+
+  // Exact "Grid Ball" longitude ratios from Figma (rx / R) — a sphere
+  // projection: rings dense at the edge, spreading toward the centre.
+  const RX_RATIOS = [
+    1.0, 0.9853, 0.9608, 0.9314, 0.8971, 0.8578, 0.8186, 0.7745, 0.7255,
+    0.6716, 0.6078, 0.5343, 0.4461, 0.348, 0.2353, 0.0931,
+  ];
 
   return (
     <div
@@ -72,16 +78,15 @@ export default function Bubble({
         className="w-full h-full"
         style={{ overflow: "visible" }}
       >
-        {Array.from({ length: n }, (_, i) => (
+        {RX_RATIOS.map((ratio, i) => (
           <ellipse
             key={i}
             cx={viewBox / 2}
             cy={viewBox / 2}
-            rx={r * (1 - (i / n) * 0.9)}
+            rx={r * ratio}
             ry={r}
             stroke={strokeColor}
-            strokeWidth={1.2}
-            opacity={0.4 + i * 0.035}
+            strokeWidth={1.5}
           />
         ))}
       </svg>
