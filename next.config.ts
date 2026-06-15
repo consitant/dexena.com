@@ -4,8 +4,8 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        // Email-signature assets — stable URLs, long-lived caching
-        source: "/img/email/:path*",
+        // Static brand/email assets — stable URLs, long-lived caching
+        source: "/img/:path*",
         headers: [
           {
             key: "Cache-Control",
