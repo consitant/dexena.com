@@ -59,13 +59,13 @@ export default function ComingSoon() {
           =========================================== */}
       <main className="relative z-10 flex flex-1 flex-col items-center justify-center px-[var(--l)] text-center">
         <Image
-          src="/images/dexena-logo.svg"
+          src="/images/dexena-logo-white.svg"
           alt="Dexena"
           width={210}
           height={50}
           priority
           className="animate-fade-up"
-          style={{ filter: "brightness(0) invert(1)", animationDelay: "0.05s" }}
+          style={{ animationDelay: "0.05s" }}
         />
 
         <p

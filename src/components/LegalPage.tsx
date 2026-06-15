@@ -21,11 +21,10 @@ export default function LegalPage({
         >
           <Link href="/">
             <Image
-              src="/images/dexena-logo.svg"
+              src="/images/dexena-logo-white.svg"
               alt="Dexena"
               width={168}
               height={40}
-              style={{ filter: "brightness(0) invert(1)" }}
             />
           </Link>
           <Link
