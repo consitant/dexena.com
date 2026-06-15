@@ -10,9 +10,9 @@ const encodeSans = Encode_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Dexena — Build. Brand. Growth.",
+  title: "Dexena — Website im Aufbau",
   description:
-    "Digitalagentur für Entwicklung, Marketing und Design. Effiziente IT-Lösungen für Ihr Unternehmen.",
+    "Dexena GmbH — Build. Brand. Growth. Unser neuer Auftritt ist im Aufbau. Bald gibt es hier mehr zu entdecken.",
 };
 
 export default function RootLayout({

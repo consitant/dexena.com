@@ -209,6 +209,65 @@ body {
   }
 }
 
+/* Coming-Soon entrance + accents */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Legal pages (Impressum / Datenschutz) */
+.legal-body h2 {
+  font-size: 24px;
+  font-weight: 700;
+  font-variation-settings: "wdth" 87.5;
+  line-height: 1.18;
+  letter-spacing: 0.04em;
+  color: var(--black-purple);
+  margin-top: var(--m);
+}
+.legal-body p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--mid-grey);
+}
+.legal-body a {
+  color: var(--purple);
+  text-decoration: underline;
+}
+.legal-body a:hover {
+  color: var(--orange);
+}
+
 /* Scrollbar-hiding utility */
 .hide-scrollbar {
   scrollbar-width: none;
@@ -223,5 +282,10 @@ body {
   .partner-marquee,
   [style*="animation"] {
     animation: none !important;
+  }
+  .animate-fade-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
